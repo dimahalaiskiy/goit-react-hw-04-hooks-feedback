@@ -19,23 +19,16 @@ const FeedBack = () => {
 		return Math.ceil(100 / ((feedback.good + feedback.bad) / feedback.good));
 	};
 
-	const handleGoodIncrease = () => {
-		setFeedback({ ...feedback, good: feedback.good + 1 });
-	};
-	const handleNeutralIncrease = () => {
-		setFeedback({ ...feedback, neutral: feedback.neutral + 1 });
-	};
-	const handleBadIncrease = () => {
-		setFeedback({ ...feedback, bad: feedback.bad + 1 });
+	const increaseFeedback = (key) => {
+		setFeedback({ ...feedback, [key]: feedback[key] + 1 });
 	};
 
 	return (
 		<Container>
 			<Title title='Please Leave a feedback!'>
 				<FeedBackOptions
-					goodIncrease={handleGoodIncrease}
-					neutralIncrease={handleNeutralIncrease}
-					badIncrease={handleBadIncrease}></FeedBackOptions>
+					options={Object.keys(feedback)}
+					increaseFeedback={increaseFeedback}></FeedBackOptions>
 			</Title>
 			<Title title='Statistics'>
 				<Statistics

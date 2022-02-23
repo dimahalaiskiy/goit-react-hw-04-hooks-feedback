@@ -2,20 +2,20 @@ import React from 'react';
 import { Button } from '../FeedBack.styled';
 import PropTypes from 'prop-types';
 
-const FeedBackOptions = ({ goodIncrease, neutralIncrease, badIncrease }) => {
+const FeedBackOptions = ({ options, increaseFeedback }) => {
 	return (
 		<>
-			<Button onClick={goodIncrease}>Good</Button>
-			<Button onClick={neutralIncrease}>Neutral</Button>
-			<Button onClick={badIncrease}>Bad</Button>
+			{options.map((el) => (
+				<Button key={el} onClick={() => increaseFeedback(el)}>
+					{el}
+				</Button>
+			))}
 		</>
 	);
 };
 
 FeedBackOptions.propTypes = {
-	goodIncrease: PropTypes.func.isRequired,
-	neutralIncrease: PropTypes.func.isRequired,
-	badIncrease: PropTypes.func.isRequired,
+	options: PropTypes.array.isRequired,
 };
 
 export default FeedBackOptions;
